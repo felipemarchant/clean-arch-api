@@ -5,7 +5,6 @@ import {
   type EmailValidator,
   type AddAccount
 } from './signup-protocols'
-
 import { MissingParamError, InvalidParamError } from '../../erros'
 import { badRequest, serverError } from '../../helpers/http-helper'
 
