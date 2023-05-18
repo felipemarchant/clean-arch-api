@@ -1,9 +1,10 @@
 export default {
   roots: ['<rootDir>/src'],
-  collectCoverage: true,
+  // collectCoverage: true
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
+  // Only ignore implemented interfaces
   coveragePathIgnorePatterns: [
     '<rootDir>/src/presentation/protocols',
     '<rootDir>/src/presentation/controllers/signup/signup-protocols.ts',

@@ -4,8 +4,12 @@
   "description": "API using clean architecture",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:staged": "jest",
+    "test": "jest --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --runInBand",
+    "test:unit": "npm test -- --watch -c jest.unit.config.ts",
+    "test:integration": "npm test -- --watch -c jest.integration.config.ts",
+    "test:staged": "npm test --",
+    "test:ci": "npm test -- --coverage",
     "prepare": "husky install"
   },
   "keywords": [],
