@@ -5,7 +5,10 @@ export default {
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   coveragePathIgnorePatterns: [
-    '<rootDir>/src/presentation/protocols'
+    '<rootDir>/src/presentation/protocols',
+    '<rootDir>/src/presentation/controllers/signup/signup-protocols.ts',
+    '<rootDir>/src/domain/models/account.ts',
+    '<rootDir>/src/domain/usecases/add-account.ts'
   ],
   testEnvironment: 'node',
   transform: {
