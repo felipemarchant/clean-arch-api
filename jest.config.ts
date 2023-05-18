@@ -9,7 +9,7 @@ export default {
     '<rootDir>/src/presentation/protocols',
     '<rootDir>/src/presentation/controllers/signup/signup-protocols.ts',
     '<rootDir>/src/domain/models/account.ts',
-    '<rootDir>/src/domain/usecases/add-account.ts'
+    '<rootDir>/src/domain/usecases/db-add-account.ts'
   ],
   testEnvironment: 'node',
   transform: {
