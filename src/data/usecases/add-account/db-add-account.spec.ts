@@ -1,4 +1,4 @@
-import { type AccountModel, type Encrypter, type AddAccountRepository } from './db-add-account-protocols'
+import { type AccountModel, type AddAccountRepository, type Encrypter } from './db-add-account-protocols'
 import { DbAddAccount } from './db-add-account'
 
 interface SutTypes {
@@ -9,13 +9,8 @@ interface SutTypes {
 const newAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (account: AccountModel): Promise<AccountModel> {
-      const fakeAccount = {
-        id: 1,
-        name: 'valid_name',
-        email: 'valid_email@email.com',
-        password: 'valid_password'
-      }
-      return await new Promise(resolve => { resolve(fakeAccount) })
+      account = { ...account, id: 1 }
+      return account
     }
   }
   return new AddAccountRepositoryStub()
@@ -23,7 +18,7 @@ const newAddAccountRepository = (): AddAccountRepository => {
 const newEncrypter = (): Encrypter => {
   class EncrypterStub implements Encrypter {
     async encrypt (value: string): Promise<string> {
-      return await new Promise(resolve => { resolve('hashed_password') })
+      return 'hashed_password'
     }
   }
   return new EncrypterStub()
@@ -88,5 +83,16 @@ describe('DbAddAccount Usecase', () => {
     }
     const promise = sut.add(accountData)
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return an acccount on success', async () => {
+    const { sut } = newSut()
+    const accountData = {
+      name: 'valid_name',
+      email: 'valid_email@email.com',
+      password: 'valid_password'
+    }
+    const account = await sut.add(accountData)
+    expect(account).toEqual({ ...accountData, id: 1, password: 'hashed_password' })
   })
 })
